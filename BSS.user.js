@@ -11,6 +11,7 @@
 // @grant GM.setValue
 // @grant GM.getValue
 // @grant GM_setClipboard
+// @grant GM.xmlHttpRequest
 // @grant unsafeWindow
 // ==/UserScript==
 
@@ -115,7 +116,6 @@
         if (document.location.href.endsWith("Main.aspx")) {
             process_main_screen();
         }
-        
     });
 
     function process_main_screen() {
@@ -258,8 +258,9 @@
                     <div class="alert_plate">
                         ${element.image}
                         <div class="alert_text">
-                            <h3>${element.title}</h3>
-                            <p>${element.body}</p>
+                            <h3 id="title">${element.title}</h3>
+                            <p id="body">${element.body}</p>
+                            <p id="type" style="display:none">${element.type}</p>
                         </div>
                         <span class="never_show">&cross;</span>
                     </div>
@@ -268,7 +269,8 @@
             $("#alert > div > span").click(function () {
                 alerts.splice(0,1); // delete anything, it doesn't matter. (it's just for the length)
                 $(this).parent().slideUp();
-                config_never_show.push(new Alert($(this).parent().find("h3").text(),$(this).parent().find("p").text(),$(this).parent().find("img").prop('outerHTML')));
+                console.log($(this).parent().find("p"))
+                config_never_show.push(new Alert($(this).parent().find("#title").text(),$(this).parent().find("#body").text(),$(this).parent().find("#type").text(),$(this).parent().find("img").prop('outerHTML')));
                 GM_setValue("bss.never_show",config_never_show);
                 if (alerts.length == 0) {
                     $("#alert").fadeOut();
@@ -306,6 +308,7 @@
 
             _warnings.forEach(element => {
                 if (!isIn(config_never_show,JSON.parse(JSON.stringify(element)),["image"])) {
+                    console.log(config_never_show,JSON.parse(JSON.stringify(element)))
                     alerts.push(element);
                 }
             });
@@ -323,7 +326,7 @@
                 ips.forEach(e => {
                     // not preserved or now
                     if (!e.startsWith("10")&&!e.startsWith("192")&&!(e.startsWith("172")&&(parseInt(e.split(".")[1])>=16&&parseInt(e.split(".")[1])<=31))&&!(now_ip.includes(e))&&!(e in config_allowed_ip)) {
-                        console.log(now_ip)
+                        // console.log(now_ip)
                         let ip = e;
                         let browser = $(page).find(`#infotable > tbody > tr:nth-child(${i+1}) > td:nth-child(3)`).text();
                         let platform = $(page).find(`#infotable > tbody > tr:nth-child(${i+1}) > td:nth-child(4)`).text();
@@ -966,17 +969,14 @@
     }
 
     function isIn(list,value,omit=[]) {
-        let is_False = true;
         for (let i=0;i<list.length;i++) {
-            console.log(list[i],value);
+            console.log(_.omit(list[i], omit),_.omit(value, omit),omit);
             if (_.isEqual(_.omit(list[i], omit),_.omit(value, omit))) {
-                is_False = false;
                 return true;
             }
         }
-        if (is_False) {
-            return false;
-        }
+        return false;
+        
     }
 
     // Modules
