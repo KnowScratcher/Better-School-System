@@ -6,6 +6,7 @@
 // @author       Know Scratcher
 // @match        https://*.k12ea.gov.tw/SCH_UI/*
 // @icon         https://upload.cc/i1/2024/07/12/NFWOMy.png
+// @updateURL    https://github.com/KnowScratcher/Better-School-System/raw/refs/heads/main/BSS.user.js
 // @grant GM_setValue
 // @grant GM_getValue
 // @grant GM.setValue
