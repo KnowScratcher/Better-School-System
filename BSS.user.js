@@ -6,7 +6,13 @@
 // @author       Know Scratcher
 // @match        https://*.k12ea.gov.tw/SCH_UI/*
 // @icon         https://upload.cc/i1/2024/07/12/NFWOMy.png
+// @license      AGPL-3.0-only
+// @copyright    2024+, Know Scratcher
+// @homepage     https://github.com/KnowScratcher/Better-School-System
+// @homepageURL  https://github.com/KnowScratcher/Better-School-System
+// @downloadURL  https://github.com/KnowScratcher/Better-School-System/raw/refs/heads/main/BSS.user.js
 // @updateURL    https://github.com/KnowScratcher/Better-School-System/raw/refs/heads/main/BSS.user.js
+// @supportURL   https://github.com/KnowScratcher/Better-School-System/issues
 // @grant GM_setValue
 // @grant GM_getValue
 // @grant GM.setValue
