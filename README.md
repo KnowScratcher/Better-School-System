@@ -1,6 +1,7 @@
 [![wakatime](https://wakatime.com/badge/github/KnowScratcher/Better-CYSH-System.svg)](https://wakatime.com/badge/github/KnowScratcher/Better-CYSH-System)
 # Better School Sysyem
-我還是必須拯救一下用亞昕系統的學校。
+> 一個讓校務行政系統更好的插件
+
 
 # 安裝
 請見[安裝](https://github.com/KnowScratcher/Better-CYSH-System/wiki/%E5%AE%89%E8%A3%9D)
