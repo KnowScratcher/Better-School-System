@@ -1,12 +1,18 @@
 // ==UserScript==
 // @name         Better School System
 // @namespace    http://tampermonkey.net/
-// @version      1.2.0-pre2
+// @version      1.2.0-pre4
 // @description  校務行政系統太爛，我來改一下
 // @author       Know Scratcher
 // @match        https://*.k12ea.gov.tw/SCH_UI/*
 // @icon         https://upload.cc/i1/2024/07/12/NFWOMy.png
+// @license      AGPL-3.0-only
+// @copyright    2024+, Know Scratcher
+// @homepage     https://github.com/KnowScratcher/Better-School-System
+// @homepageURL  https://github.com/KnowScratcher/Better-School-System
+// @downloadURL  https://github.com/KnowScratcher/Better-School-System/raw/refs/heads/main/BSS.user.js
 // @updateURL    https://github.com/KnowScratcher/Better-School-System/raw/refs/heads/main/BSS.user.js
+// @supportURL   https://github.com/KnowScratcher/Better-School-System/issues
 // @grant GM_setValue
 // @grant GM_getValue
 // @grant GM.setValue
@@ -85,6 +91,8 @@
     let config_rank_colorNoRank = "#000000";
     let config_never_show = [];
     let config_allowed_ip = [];
+    let account_account = "";
+    let account_password = "";
 
     let setting_changed = false;
 
@@ -113,6 +121,7 @@
         // setting setup
         setup_setting_form();
         override_to_fade_UI();
+        add_fast_login_button();
         if (config_keep_login) {
             setInterval(function () {window.dispatchEvent(new Event("compositionupdate"));},100);
         }
@@ -364,6 +373,8 @@
         config_rank_colorNoRank = GM_getValue("bss.rank_colorNoRank");
         config_never_show = GM_getValue("bss.never_show");
         config_allowed_ip = GM_getValue("bss.allowed_ip");
+        account_account = GM_getValue("account.account"); // no need to init
+        account_password = GM_getValue("account.password"); // no need to init
         setting_changed = false;
         if (config_keep_login == undefined) {
             config_keep_login = false;
@@ -844,9 +855,42 @@
         return data;
     }
 
-    function get_ratio(data) {
-        /* behind/all */
-        return data[1]/data[2];
+    function add_fast_login_button() {
+        if (document.location.href.endsWith("Login.aspx")) {
+            if ((account_account != undefined && account_account != "") && (account_password != undefined && account_password != "")) {
+                $("#BtnLogin").after(`<input type="submit" name="BtnLogin" value="快速登入(不須輸入帳密)" id="BtnFastLogin" class="ctrlbutton">`);
+            }else {
+                $("#BtnLogin").after(`<input type="submit" name="BtnLogin" value="儲存登入(下次不須帳密)" id="BtnFastLogin" class="ctrlbutton">`);
+            }
+            
+        }
+        $("#BtnFastLogin").click(function() {save_or_login();});
+        $("#ifsetpswd").on("load",function(){
+            console.log("loaded");
+            $("#ifsetpswd").contents().find("#BtnArchive").click(function() {
+                if ($("#TbPswdnew_tb").val() != "undefined" && $("#TbPswdnew_tb").val() != undefined) {
+                    account_password = $("#TbPswdnew_tb").val();
+                    GM_setValue("account.password",account_password);
+                }
+                
+            });
+        });
+    }
+    
+    function save_or_login() {
+        if (document.location.href.endsWith("Login.aspx")) {
+            if ((account_account == undefined || account_account == "") || (account_password == undefined || account_password == "")) {
+                account_account = $("#UserId").val();
+                account_password = $("#Pswd").val();
+                GM_setValue("account.account",account_account);
+                GM_setValue("account.password",account_password);
+            }else {
+                $("#UserId").val("210106");
+                $("#Pswd").val("Xu3u402008");
+            }
+        }
+        
+
     }
 
     // Overrides/Injection
@@ -962,6 +1006,11 @@
     }
 
     // Tool Function
+    function get_ratio(data) {
+        /* behind/all */
+        return data[1]/data[2];
+    }
+
     function toInt(l) {
         let result = []
         l.forEach(element => {
