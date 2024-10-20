@@ -2,6 +2,7 @@
 
 ![Better School System](./assets/cover.png)
 > 一個讓校務行政系統更好用的插件
+<!-- $${\color{yellow}本專案之後有機會轉型為軟體}$$ -->
 
 # 必要事項
 - 必須安裝tampermonkey
@@ -9,6 +10,21 @@
 
 # 安裝
 請見[安裝](https://github.com/KnowScratcher/Better-CYSH-System/wiki/%E5%AE%89%E8%A3%9D)
+
+
+# 原理
+幫你加一些功能上去，像是保持登入，不會20分鐘就登出。
+
+**簡單來說就是外掛**
+
+# 出錯了嗎
+到[這裡](https://github.com/KnowScratcher/Better-School-System/issues/new?assignees=&labels=bug&projects=&template=bug.yml)回報!
+
+# 我想要新功能
+到[這裡](https://github.com/KnowScratcher/Better-School-System/issues/new?assignees=&labels=enhancement&projects=&template=request.yml)提出!
+
+# 加入我們的Discord追蹤進度
+[點這個神奇的連結](https://discord.gg/gbHQWKqGde)
 
 # 可用學校
 ✅為已測試
@@ -54,23 +70,6 @@
 
 ## 想要被測試嗎
 我們的[開發貢獻方案](https://forms.gle/wtsEoCzBNqAYk6zB6)
-
-# 原理
-幫你加一些功能上去，像是保持登入，不會20分鐘就登出。
-
-**簡單來說就是外掛**
-
-# 最近更新
-**v1.2 警報更新**
-
-# 出錯了嗎
-到[這裡](https://github.com/KnowScratcher/Better-School-System/issues/new?assignees=&labels=bug&projects=&template=bug.yml)回報!
-
-# 我想要新功能
-到[這裡](https://github.com/KnowScratcher/Better-School-System/issues/new?assignees=&labels=enhancement&projects=&template=request.yml)提出!
-
-# 加入我們的Discord追蹤進度
-[點這個神奇的連結](https://discord.gg/gbHQWKqGde)
 
 # 感謝資料來源
 若有不小心侵權，請[以email告知](mailto:yianlee2008@gmail.com)，我會儘快將該內容移除。

@@ -170,7 +170,6 @@
                         all = $(grade_page).find("#GrdStd_ScoreAvgRank_ctl03_GrdStd_ScoreAvgRank_examTerm_lab").text();
                         break;
                     }
-                t1 = "10/600"
                 draw_dash(t1,t2,t3,all);
             })
         }
