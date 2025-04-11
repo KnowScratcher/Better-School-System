@@ -9,7 +9,7 @@
 - Chrome使用者必須在[插件管理員](chrome://extensions/)開啟**開發人員模式**
 
 # 安裝
-請見[安裝](https://github.com/KnowScratcher/Better-CYSH-System/wiki/%E5%AE%89%E8%A3%9D)
+請見[安裝](https://github.com/KnowScratcher/Better-School-System/wiki/%E5%AE%89%E8%A3%9D)
 
 
 # 原理
